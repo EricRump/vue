@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>Color Mixer</h1>
+            <div class="div">
+                <input type="range" step="1" min="0" max="255" value="0" class="red" v-model="red" @change="color">
+                <input type="range" step="1" min="0" max="255" value="0" class="green" v-model="green" @change="color">
+                <input type="range" step="1" min="0" max="255" value="0" class="blue" v-model="blue" @change="color">
+                <p>rgb value: {{ red }}, {{ green }}, {{ blue }}</p>
+            </div>
+            <button @click="randomColor">random color</button>
+        </header>
+        <main :style="{
+            backgroundColor: rgbValue
+        }">
+
+        </main>
+    </div>
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
