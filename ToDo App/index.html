@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+</head>
+
+<body>
+    <div id="app">
+        <main>
+            <h1>{{ appName }}</h1>
+            <form id="form-wrapper" @submit.prevent="addTodo">
+                <input type="text" name="description" id="description" v-model="currentDescription" />
+                <button>Add Todo</button>
+                <p>{{ currentDescription }}</p>
+            </form>
+            <form>
+                <input type="radio" name="filter" id="all" v-model="filter" value="all" />
+                <label for="all">All</label>
+                <input type="radio" name="filter" id="open" v-model="filter" value="open" />
+                <label for="open"> Open </label>
+                <input type="radio" name="filter" id="done" v-model="filter" value="done" />
+                <label for="done"> Done </label>
+            </form>
+            <ul>
+                <li v-for="(currentTodo, index) of filteredTodos" :key="currentTodo.id">
+                    <input type="checkbox" :name="currentTodo.id" :id="'todo-' + currentTodo.id"
+                        v-model="currentTodo.done" />
+                    <label :for="'todo-' + currentTodo.id">{{ index }} {{ currentTodo.description }}</label>
+                    <button v-if="currentTodo.done" @click="deleteTodo(index)">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+        </main>
+    </div>
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
